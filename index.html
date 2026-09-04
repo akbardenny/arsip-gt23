@@ -178,12 +178,11 @@
 </head>
 <body>
 
-    <!-- LOGO ANGKATAN DI DALAM FOLDER ASSETS -->
+    <!-- LOGO ANGKATAN -->
     <header>
-        <!-- Mengarah ke assets/Logo-Angkatan.jpg (sesuaikan huruf besar/kecil jika perlu) -->
         <img src="assets/Logo-Angkatan.jpg" alt="Logo Angkatan Geomatika 23" onerror="this.src='https://via.placeholder.com/130?text=LOGO'">
         <h1>Teknik Geomatika 23</h1>
-        <p>Direktori Biodata Resmi Mahasiswa Angkatan 2023</p>
+        <p>Direktori Biodata Resmi Mahasiswa Teknik Geomatika Angkatan 2023</p>
     </header>
 
     <!-- KOTAK PENCARIAN -->
@@ -197,7 +196,7 @@
     </div>
 
     <footer>
-        &copy; 2026 Teknik Geomatika 23 | Ditampilkan secara otomatis dari database.
+        &copy; 2026 Teknik Geomatika 23 | Dibuat dan disesuaikan oleh 123230055 dan 123230070
     </footer>
 
     <script>
@@ -205,13 +204,14 @@
 
         async function loadDatabase() {
             try {
-                let response = await fetch('data/database.csv');
+                let response = await fetch('data/database2.csv'); // Sesuaikan jika nama file Anda database.csv atau database2.csv
                 let text = await response.text();
                 
                 let rows = text.split('\n').filter(r => r.trim() !== '');
                 if (rows.length === 0) return;
 
                 for (let i = 1; i < rows.length; i++) {
+                    // Pemisah menggunakan titik koma (;) sesuai struktur asli file CSV
                     let cols = rows[i].split(';').map(c => c.trim().replace(/^"|"$/g, ''));
                     if (cols.length >= 6 && cols[1]) {
                         allMembers.push({
@@ -219,9 +219,8 @@
                             nim: cols[1],
                             nama: cols[2],
                             prodi: cols[3],
-                            wasgeo: cols[4],
-                            tpb: cols[5],
-                            alamat: cols[6] || '-'
+                            tpb: cols[4],
+                            alamat: cols[5] || '-'
                         });
                     }
                 }
@@ -230,7 +229,7 @@
                 console.error("Gagal memuat CSV:", error);
                 document.getElementById('member-container').innerHTML = `
                     <p style="grid-column: 1 / -1; text-align: center; color: #ef4444;">
-                        Gagal memuat database. Pastikan file <b>database.csv</b> ada di dalam folder <b>data/</b>.
+                        Gagal memuat database. Pastikan file <b>database2.csv</b> ada di dalam folder <b>data/</b>.
                     </p>`;
             }
         }
@@ -245,8 +244,8 @@
             }
 
             members.forEach(m => {
-                // Mengambil foto langsung dari folder assets/ berdasarkan nama mahasiswa
-                let fotoPath = `assets/${m.nama}.jpg`;
+                // Foto dipanggil berdasarkan NIM (contoh: assets/123230001.jpg)
+                let fotoPath = `assets/${m.nim}.jpg`;
 
                 let card = document.createElement('div');
                 card.className = 'card';
@@ -259,10 +258,6 @@
                         <div class="info-row">
                             <span class="info-label">Prodi</span>
                             <span class="info-value">${m.prodi}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Kelas Wasgeo</span>
-                            <span class="info-value">${m.wasgeo}</span>
                         </div>
                         <div class="info-row">
                             <span class="info-label">Kelas TPB</span>
