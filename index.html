@@ -178,9 +178,10 @@
 </head>
 <body>
 
-    <!-- LOGO ANGKATAN SEBAGAI HEADLINE -->
+    <!-- LOGO ANGKATAN DI DALAM FOLDER ASSETS -->
     <header>
-        <img src="assets/img/logo-angkatan.jpg" alt="Logo Angkatan Geomatika 23" onerror="this.src='https://via.placeholder.com/130?text=LOGO'">
+        <!-- Mengarah ke assets/Logo-Angkatan.jpg (sesuaikan huruf besar/kecil jika perlu) -->
+        <img src="assets/Logo-Angkatan.jpg" alt="Logo Angkatan Geomatika 23" onerror="this.src='https://via.placeholder.com/130?text=LOGO'">
         <h1>Teknik Geomatika 23</h1>
         <p>Direktori Biodata Resmi Mahasiswa Angkatan 2023</p>
     </header>
@@ -196,7 +197,7 @@
     </div>
 
     <footer>
-        &copy; 2026 Teknik Geomatika 23 | Ditampilkan secara otomatis dari database by 123230055.
+        &copy; 2026 Teknik Geomatika 23 | Ditampilkan secara otomatis dari database.
     </footer>
 
     <script>
@@ -244,7 +245,8 @@
             }
 
             members.forEach(m => {
-                let fotoPath = `assets/img/${m.nim}.jpg`;
+                // Mengambil foto langsung dari folder assets/ berdasarkan nama mahasiswa
+                let fotoPath = `assets/${m.nama}.jpg`;
 
                 let card = document.createElement('div');
                 card.className = 'card';
